@@ -38,7 +38,7 @@ const MyCamera = () => {
         shadow-camera-bottom={-3}
         shadow-camera-near={0.5}
         shadow-camera-far={14}
-        normalBias={0.04} // УМЕНЬШИ С 0.6 до 0.04
+        normalBias={0.03} // УМЕНЬШИ С 0.6 до 0.04
         shadow-bias={-0.0002}
       />
     </>
