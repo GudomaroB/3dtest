@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+
 "scripts": {
   "build": "vite build",
   "dev": "vite",
   "preview": "vite preview",
-  "lint": "eslint .",
-  "start": "react-scripts start" 
+  "lint": "eslint ."
 },
   "dependencies": {
     "@react-three/drei": "^10.7.4",
