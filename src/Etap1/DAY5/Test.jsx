@@ -5,6 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import { useRef, useEffect } from "react";
 import { useHelper } from "@react-three/drei";
 import * as THREE from "three";
+import { useThree } from "@react-three/fiber";
 
 const Camera = () => {
   const camera = useRef();
