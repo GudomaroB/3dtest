@@ -9,29 +9,28 @@ import * as THREE from "three";
 const Camera = () => {
   const camera = useRef();
 
-  //   useHelper(camera, THREE.DirectionalLightHelper, 1, "#000000");
+  useHelper(camera, THREE.DirectionalLightHelper, 1, "#000000");
 
-  //   useEffect(() => {
-  //     if (camera.current) {
-  //       const helper = new THREE.CameraHelper(camera.current.shadow.camera);
-  //       camera.current.add(helper);
-
-  //       return () => {
-  //         camera.current.remove(helper);
-  //         helper.dispose();
-  //       };
-  //     }
-  //   }, []);
+  useEffect(() => {
+    if (camera.current) {
+      const helper = new THREE.CameraHelper(camera.current.shadow.camera);
+      camera.current.add(helper);
+      return () => {
+        camera.current.remove(helper);
+        helper.dispose();
+      };
+    }
+  }, []);
 
   return (
     <>
       <ambientLight intensity={0.5} />
       <directionalLight
-        // ref={camera}
+        ref={camera}
         castShadow
         intensity={1.1}
         position={[0.4, 3.5, 3]}
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[1024, 1024]}
         shadow-camera-left={-3.5}
         shadow-camera-right={3.5}
         shadow-camera-top={3.5}
@@ -41,13 +40,13 @@ const Camera = () => {
         shadow-camera-near={0.4}
         shadow-camera-far={12}
       />
-      <PerspectiveCamera makeDefault position={[0, 5, 7]} />
+      <PerspectiveCamera makeDefault position={[0, 4, 8]} />
       <OrbitControls
         makeDefault
         enableDamping={true}
         dampingFactor={0.4}
         minDistance={3}
-        maxDistance={9}
+        maxDistance={20}
         minPolarAngle={0.2}
         maxPolarAngle={1.5}
         target={[0, 1, 0]}

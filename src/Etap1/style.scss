@@ -1,4 +1,7 @@
 //! День 1
+body {
+  position: relative;
+}
 .wrapper {
   width: 100vw;
   height: 100vh;
@@ -17,7 +20,9 @@
 //! День 2
 .day3,
 .day4,
-.day5 {
+.day5,
+.test {
+  position: relative;
   height: 100vh;
   width: 100%;
   padding: 10px;

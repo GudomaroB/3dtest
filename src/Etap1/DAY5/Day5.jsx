@@ -10,7 +10,7 @@ import { useHelper } from "@react-three/drei";
 const Camera = () => {
   const svet = useRef();
 
-  useHelper(svet, THREE.DirectionalLightHelper, 1, "#000");
+  useHelper(svet, THREE.DirectionalLightHelper, 2, "#000");
 
   useEffect(() => {
     if (svet.current) {
@@ -27,13 +27,25 @@ const Camera = () => {
     <>
       <ambientLight intensity={0.8} />
       <PerspectiveCamera makeDefault position={[0, 7, 8]} />
-      <OrbitControls makeDefault />
+      <OrbitControls
+        makeDefault
+        enableDamping={true} // Плавность как в крутой видеоигре
+        dampingFactor={0.05} // Сила "торможения" (чем меньше, тем сильнее инерция)
+        rotateSpeed={0.8} // Стандартная скорость вращения
+        zoomSpeed={1.5} // Чуть замедленный zoom для аккуратности
+        minDistance={3} // Не даем подъехать к машине вплотную (не видно целиком)
+        maxDistance={12} // Не даем уехать так далеко, что машина превратится в точку
+        minPolarAngle={0.2} // Не даем посмотреть СЛИШКОМ сверху (например, только до 25 градусов)
+        maxPolarAngle={1.7} // Не даем уйти под землю и посмотреть снизу (ограничиваем 85 градусами)
+        enablePan={true} // Разрешаем сдвигать камеру
+        target={[0, 1.3, 0]} // Вращаемся вокруг центра машины (условно на высоте 1 метр)
+      />
       <directionalLight
         ref={svet}
         intensity={1}
         castShadow
-        position={[3, 5, 5]}
-        shadow-mapSize={[1024, 1024]}
+        position={[1.2, 4, 4]}
+        shadow-mapSize={[2048, 2048]}
         shadow-camera-left={-4}
         shadow-camera-right={4}
         shadow-camera-top={4}
@@ -53,7 +65,7 @@ const Floor = () => {
     <>
       <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
         <planeGeometry args={[7, 7]} />
-        <meshStandardMaterial color={"gray"} />
+        <meshStandardMaterial color={"#999999"} />
       </mesh>
       <gridHelper args={[8, 8]} position={[0, -0.1, 0]} />
     </>
@@ -117,6 +129,7 @@ export const Day5 = () => {
         <Floor />
         <Shkaf />
       </Canvas>
+      {/* <button className="btnday5">Вернуть камеру</button> */}
     </div>
   );
 };
