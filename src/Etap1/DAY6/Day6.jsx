@@ -30,13 +30,13 @@ const Camera = () => {
         enableDamping={true}
         dampingFactor={0.4}
         minDistance={2}
-        maxDistance={7}
+        maxDistance={15}
         target={[0, 0.5, 0]}
         zoomSpeed={1.5}
         rotateSpeed={0.8}
         minPolarAngle={0.2}
         maxPolarAngle={1.65}
-        enablePan={false}
+        enablePan={true}
       />
       <PerspectiveCamera makeDefault position={[0.1, 3, 7]} />
       <directionalLight
